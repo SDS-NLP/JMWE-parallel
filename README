@@ -1,0 +1,51 @@
+# JMWE_parallel
+
+## Overview
+This repository provides LLM-generated **literal usage examples** for Japanese multiword expressions (MWEs), distributed in JSONL format.
+
+For this **provisional release (v0.x)**, examples are automatically filtered using an LLM-based evaluation, and only those judged as *literal* are included.  
+In a future release (v1.0), these automatically judged *literal* examples will be **manually reviewed**, and examples identified as *non-literal* by human annotators will be removed.
+
+This dataset builds upon usage examples sourced from the JParaCrawl corpus, a large English–Japanese parallel corpus released by NTT Communication Science Laboratories.
+
+Please refer to the accompanying paper for methodological details.
+
+## Data
+The primary dataset included in this repository is:
+
+- `jmwe_literal_v0.1.jsonl`  
+  - Number of examples: **6,650**
+  - All examples are automatically judged as *literal* by an LLM-based evaluator.
+
+Some example sentences originate from JParaCrawl.  
+Copyright of those sentences belongs to the original authors of the web pages from which they were extracted, not to NTT.
+
+## License / Usage
+This dataset includes example sentences **derived from the JParaCrawl corpus**.  
+Use of those sentences must comply with the usage conditions of JParaCrawl.
+- **Non-Commercial Use Only (NC).**
+  - You may use, copy, and redistribute this dataset **for research and educational purposes only**.
+  - **Commercial use is not permitted** without additional permission from the rights holders.
+- If you use this dataset in academic work (e.g., papers, reports, presentations), please **cite the associated work and include links to both this repository and the JParaCrawl homepage**.
+
+Official JParaCrawl page:  
+https://www.kecl.ntt.co.jp/icl/lirg/jparacrawl/
+
+> Note: This repository follows the redistribution practice commonly used for JParaCrawl-derived resources.  
+> If any issues are raised regarding redistribution, the corresponding data will be removed or revised as necessary.
+
+## Data Format (JSONL)
+Each line in the JSONL file is a JSON object with the following fields:
+
+- `mwe` (str): Surface form of the Japanese multiword expression.
+- `example_literal_generated` (str): LLM-generated sentence intended to illustrate *literal* usage of the MWE.
+- `example_literal_jparacrawl` (str): Literal usage example sourced from JParaCrawl.
+- `example_nonliteral_jparacrawl` (str): Non-literal usage example sourced from JParaCrawl.
+- `condition` (str): Prompting or generation condition used during dataset construction.
+- `llm_judge_label_gemini` (str): Automatic judgment label assigned by an LLM (expected value: `"literal"` in this release).
+- `domain_jpara_literal` (str): Domain category of the literal example sourced from JParaCrawl.
+- `domain_jpara_nonliteral` (str): Domain category of the non-literal example sourced from JParaCrawl.
+
+## Versioning
+- **v0.1**: Automatically evaluated literal examples only (current).
+- **v1.0 (planned)**: Removal of non-literal examples identified through human review.
